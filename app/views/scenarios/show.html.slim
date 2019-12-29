@@ -1,0 +1,6 @@
+h1 
+  = @scenario.scenario_id
+= @scenario.discription
+.row
+  .col2
+    = link_to "#{@scenario.next_no1}へ行く", scenario_path(@next.id), class: 'btn btn-outline-primary' unless @scenario.next_no1 == 0

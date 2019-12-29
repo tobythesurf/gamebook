@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  scenario_no: 1
+  description: MyText
+  next_no1: 1
+  next_no2: 1
+  next_no3: 1
+  book: one
+
+two:
+  scenario_no: 1
+  description: MyText
+  next_no1: 1
+  next_no2: 1
+  next_no3: 1
+  book: two

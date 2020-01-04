@@ -22,7 +22,7 @@ class BooksController < ApplicationController
 
   # POST /books
   def create
-    @book = Book.new(book_params)
+    @book = Book.new(book_params.merge(user_id: current_user.id))
 
     if @book.save
       redirect_to @book, notice: 'Book was successfully created.'
@@ -33,7 +33,7 @@ class BooksController < ApplicationController
 
   # PATCH/PUT /books/1
   def update
-    if @book.update(book_params)
+    if @book.update(book_params.merge(user_id: current_user.id))
       redirect_to @book, notice: 'Book was successfully updated.'
     else
       render :edit

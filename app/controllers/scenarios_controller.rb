@@ -1,6 +1,6 @@
 class ScenariosController < ApplicationController
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_member!, only: [:index, :new, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:index, :new, :edit, :update, :destroy]
 
   # GET /scenarios
   def index

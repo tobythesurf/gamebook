@@ -8,32 +8,5 @@ h1 新しくゲームブックを作る
         - @book.errors.full_messages.each do |message|
           li = message
 
-  .form-group.row
-    .col-sm-3
-      = f.label :user, 'ユーザー番号', class: 'col-form-label'
-    .col-sm-9
-      = f.number_field :user_id, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :book_title, 'タイトル名', class: 'col-form-label'
-    .col-sm-9
-      = f.text_field :book_title, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :discription, 'ブックの概要', class: 'col-form-label'
-    .col-sm-9
-      = f.text_area :discription, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :introduction, 'ブックの前書き', class: 'col-form-label'
-    .col-sm-9
-      = f.text_area :introduction, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :user_permission, '公開許可', class: 'col-form-label'
-    .col-sm-9
-      = f.check_box :user_permission, class: 'form-control'
-  .form-group
-     = f.submit '決定', class: 'btn btn-outline-primary'
-
-= link_to '一覧へ戻る', books_path
+.mt-5
+  = render partial: 'form', locals: { book: @book }

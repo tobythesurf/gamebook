@@ -1,5 +1,9 @@
 h1 ゲームブック一覧
 
+- if current_user
+  .nav.justify-content-end
+    = link_to '新規作成', new_book_path, class: 'btn btn-primary'
+
 table.table.table-hover
   thead.thead-default
     tr
@@ -10,8 +14,9 @@ table.table.table-hover
     - @books.each do |book|
       tr
         td = book.book_title
-        td = book.discription
-        td
-          = link_to '閲覧', book, class: 'btn btn-outline-primary mr-3'
-          = link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3'
-          = link_to '削除', book, method: :delete, data: { confirm: "#{book.book_title}を削除します。よろしいですか？"}, class: 'btn btn-danger'
+        td = book.description
+        - if current_user
+          td
+            = link_to '閲覧', book, class: 'btn btn-outline-primary mr-3'
+            = link_to '編集', edit_book_path(book), class: 'btn btn-primary mr-3'
+            = link_to '削除', book, method: :delete, data: { confirm: "#{book.book_title}を削除します。よろしいですか？"}, class: 'btn btn-danger'

@@ -1,4 +1,4 @@
-class ScenariosController < ApplicationController
+class Admin::ScenariosController < ApplicationController
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
 
   # GET /scenarios

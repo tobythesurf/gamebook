@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  root to: 'books#index'
+  root to: 'public/books#index'
+  namespace :admin do
+    resources :books
+    resources :scenarios
+    resources :profiles
+  end
+  scope module: :public do
+    resources :books
+    resources :scenarios
+    resources :profiles
+  end
   devise_for :users, controllers: {
     sessions: 'users/sessions',
     registrations: 'users/registrations'
@@ -8,6 +18,4 @@ Rails.application.routes.draw do
     get 'login', to: 'users/sessions#new'
     delete 'logout', to: 'users/sessions#destroy'
   end
-  resources :scenarios
-  resources :books
 end

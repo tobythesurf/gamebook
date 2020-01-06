@@ -1,0 +1,32 @@
+.mb-3
+  .row
+    .col
+    .col6 
+      h1 = @book.book_title
+    .col
+
+= form_with model: book, local: true do |f|
+  .form-group.row
+    .col-sm-3
+      = f.label :book_title, 'タイトル名', class: 'col-form-label'
+    .col-sm-9
+      = f.text_field :book_title, class: 'form-control'
+  .form-group.row
+    .col-sm-3
+      = f.label :description, 'ブックの概要', class: 'col-form-label'
+    .col-sm-9
+      = f.text_area :description, class: 'form-control'
+  .form-group.row
+    .col-sm-3
+      = f.label :introduction, 'ブックの前書き', class: 'col-form-label'
+    .col-sm-9
+      = f.text_area :introduction, class: 'form-control'
+  .form-group.row
+    .col-sm-3
+      = f.label :user_permission, '公開許可', class: 'col-form-label'
+    .col-sm-9
+      = f.check_box :user_permission, class: 'form-control'
+  .form-group
+      = f.submit '決定', class: 'btn btn-outline-primary'
+
+= link_to '一覧へ戻る', admin_books_path

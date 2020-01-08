@@ -4,12 +4,13 @@
     h1 = @book.book_title
   .col
 
-table.table.table-hover
-  tbody
-    tr
-      td = "ブックナンバー:  #{@book.id}"
-    tr
-      td = simple_format(h(@book.introduction), {}, sanitize:false, wrapper_tag: "div")
+.mt-5
+  table.table.table-hover
+    tbody
+      tr
+        td = "ブックナンバー:  #{@book.id}"
+      tr
+        td = simple_format(h(@book.introduction), {}, sanitize:false, wrapper_tag: "div")
 
 .row
   -if @book.scenarios.present?

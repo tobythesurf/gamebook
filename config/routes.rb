@@ -1,11 +1,13 @@
 Rails.application.routes.draw do
   root to: 'public/books#index'
   namespace :admin do
+    get 'dashboard/index'
     resources :books
     resources :scenarios
     resources :profiles
   end
   scope module: :public do
+    get 'dashboard/index'
     resources :books
     resources :scenarios
     resources :profiles

@@ -1,0 +1,17 @@
+.row
+  .col
+  .col6 
+    h1
+      |"ようこそ　#{current_user.id}　さん"
+  .col
+
+.mt-5
+  table.table.table-hover
+    thead.thead-default
+      tbody
+          tr
+            td = 'ゲームブックを作る'
+            td = link_to '作成', new_admin_book_path, class: 'btn btn-primary'
+          tr
+            td = 'ゲームブックの一覧'
+            td = link_to '一覧', admin_books_path, class: 'btn btn-primary'

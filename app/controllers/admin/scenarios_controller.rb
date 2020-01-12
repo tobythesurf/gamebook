@@ -13,6 +13,7 @@ class Admin::ScenariosController < ApplicationController
   # GET /scenarios/new
   def new
     @scenario = Scenario.new
+    params[:book_id]
   end
 
   # GET /scenarios/1/edit

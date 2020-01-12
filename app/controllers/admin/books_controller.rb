@@ -1,14 +1,15 @@
 class Admin::BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /books
   def index
-    @books = Book.all
+    @books = current_user.books
   end
 
   # GET /books/1
   def show
+    current_user.books.find(params[:id])
   end
 
   # GET /books/new
@@ -18,6 +19,7 @@ class Admin::BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
+    current_user.books.find(params[:id])
   end
 
   # POST /books
@@ -49,7 +51,7 @@ class Admin::BooksController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      @book = current_user.books.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -4,24 +4,30 @@
     h1 ゲームブック一覧
   .col
 
-- if current_user
+- if current_user.books.present?
   .nav.justify-content-end
     = link_to '新規作成', new_admin_book_path, class: 'btn btn-primary'
 
-.mt-5
-  table.table.table-hover
-    thead.thead-default
-      tr
-        th = '題名'
-        th = '大体の内容'
-        th
-    tbody
-      - @books.each do |book|
+  .mt-5
+    table.table.table-hover
+      thead.thead-default
         tr
-          td = book.book_title
-          td = book.description
-          - if current_user
+          th = '題名'
+          th = '大体の内容'
+          th
+      tbody
+        - @books.each do |book|
+          tr
+            td = book.book_title
+            td = book.description
             td
               = link_to '閲覧', admin_book_url(book), class: 'btn btn-outline-primary mr-3'
               = link_to '編集', edit_admin_book_path(book), class: 'btn btn-primary mr-3'
               = link_to '削除', admin_book_url(book), method: :delete, data: { confirm: "#{book.book_title}を削除します。よろしいですか？"}, class: 'btn btn-danger'
+- else
+  .mt-5
+    .row
+      .col
+      .col6 
+        h1 ゲームブックがありません。
+      .col

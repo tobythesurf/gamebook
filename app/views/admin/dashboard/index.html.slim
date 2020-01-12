@@ -9,9 +9,9 @@
   table.table.table-hover
     thead.thead-default
       tbody
-          tr
-            td = 'ゲームブックを作る'
-            td = link_to '作成', new_admin_book_path, class: 'btn btn-primary'
-          tr
-            td = 'ゲームブックの一覧'
-            td = link_to '一覧', admin_books_path, class: 'btn btn-primary'
+        tr
+          td = 'ゲームブックを作る'
+          td = link_to 'ブック作成', new_admin_book_path, class: 'btn btn-primary'
+        tr
+          td = '作ったブックの一覧'
+          td = link_to 'ブック一覧', admin_books_path, class: 'btn btn-primary'

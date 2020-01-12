@@ -8,6 +8,8 @@ class Public::ScenariosController < ApplicationController
 
   # GET /scenarios/1
   def show
+    params[:book_id]
+    scenario_first = @scenario.find_by(book_id: @scenario.book_id).first
   end
 
   # GET /scenarios/new

@@ -4,16 +4,26 @@
     h1 ゲームブック一覧
   .col
 
+= search_form_for @q, class: 'mb-5' do |f|
+  .form-group.row
+    = f.label :book_title_cont, 'ブック名', class: 'col-sm-2 col-form-label'
+    .col-sm-10
+      = f.search_field :book_title_cont, class: 'form-control'
+  .form-group
+    = f.submit class: 'btn btn-primary'
+
 .mt-5
   table.table.table-hover
     thead.thead-default
       tr
         th = '題名'
         th = '大体の内容'
+        th = 'ラベル'
         th
     tbody
       - @books.each do |book|
         tr
           td = book.book_title
           td = book.description
+          td = book.label_list
           td = link_to '閲覧', book, class: 'btn btn-outline-primary mr-3'

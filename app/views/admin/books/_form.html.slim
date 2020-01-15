@@ -26,6 +26,9 @@
       = f.label :user_permission, '公開許可', class: 'col-form-label'
     .col-sm-9
       = f.check_box :user_permission, class: 'form-control'
+  .field.row
+    = f.label :label_list, 'タグをカンマ区切りで入力'
+    = text_field_tag 'book[label_list]', book.label_list.join(',')
   .form-group
       = f.submit '決定', class: 'btn btn-outline-primary'
 

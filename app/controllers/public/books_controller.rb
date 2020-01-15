@@ -5,7 +5,8 @@ class Public::BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    @q = Book.ransack(params[:id])
+    @books = @q.result(distinct: true).reject
   end
 
   # GET /books/1
@@ -55,6 +56,6 @@ class Public::BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id)
+      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id, :label_list)
     end
 end

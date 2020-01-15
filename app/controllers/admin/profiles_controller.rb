@@ -1,13 +1,16 @@
 class Admin::ProfilesController < ApplicationController
+  layout "admin"
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /profiles
   def index
-    @profiles = Profile.all
+    @profile = current_user.profile
   end
 
   # GET /profiles/1
   def show
+    @profile = current_user.profile
   end
 
   # GET /profiles/new
@@ -17,11 +20,12 @@ class Admin::ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    @profile = current_user.profile
   end
 
   # POST /profiles
   def create
-    @profile = Profile.new(profile_params)
+    @profile = current_user.profiles.new(profile_params)
 
     if @profile.save
       redirect_to @profile, notice: 'Profile was successfully created.'
@@ -32,7 +36,7 @@ class Admin::ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   def update
-    if @profile.update(profile_params)
+    if @profile.update(profile_params.merge(user_id: current_user.id))
       redirect_to @profile, notice: 'Profile was successfully updated.'
     else
       render :edit
@@ -42,7 +46,7 @@ class Admin::ProfilesController < ApplicationController
   # DELETE /profiles/1
   def destroy
     @profile.destroy
-    redirect_to profiles_url, notice: 'Profile was successfully destroyed.'
+    redirect_to profile_url, notice: 'Profile was successfully destroyed.'
   end
 
   private

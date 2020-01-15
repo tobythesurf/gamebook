@@ -1,4 +1,5 @@
 class Admin::ScenariosController < ApplicationController
+  layout "admin"
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
 
   # GET /scenarios

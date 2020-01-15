@@ -9,6 +9,17 @@
   table.table.table-hover
     thead.thead-default
       tbody
+        - if current_user.profile.present?
+          tr
+            td = 'プロフィール閲覧'
+            td = link_to 'プロフィール閲覧', admin_profiles_path, class: 'btn btn-primary'
+          tr
+            td = 'プロフィール編集'
+            td = link_to 'プロフィール編集', edit_admin_profile_path(current_user.id), class: 'btn btn-primary'          
+        - else
+          tr
+            td = 'プロフィールの作成'
+            td = link_to 'プロフィール', new_admin_profile_path, class: 'btn btn-primary'
         tr
           td = 'ゲームブックを作る'
           td = link_to 'ブック作成', new_admin_book_path, class: 'btn btn-primary'

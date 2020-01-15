@@ -1,4 +1,5 @@
 class Public::ScenariosController < ApplicationController
+  layout "public"
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
 
   # GET /scenarios

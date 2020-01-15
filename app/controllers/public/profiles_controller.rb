@@ -1,5 +1,7 @@
 class Public::ProfilesController < ApplicationController
+  layout "public"
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /profiles
   def index
@@ -21,7 +23,7 @@ class Public::ProfilesController < ApplicationController
 
   # POST /profiles
   def create
-    @profile = Profile.new(profile_params)
+    @profile = Profile.new(profile_params.merge(user_id: current_user.id))
 
     if @profile.save
       redirect_to @profile, notice: 'Profile was successfully created.'
@@ -32,7 +34,7 @@ class Public::ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   def update
-    if @profile.update(profile_params)
+    if @profile.update(profile_params.merge(user_id: current_user.id))
       redirect_to @profile, notice: 'Profile was successfully updated.'
     else
       render :edit

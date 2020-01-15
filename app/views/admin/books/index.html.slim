@@ -16,7 +16,7 @@
           th = '大体の内容'
           th
       tbody
-        - @books.each do |book|
+        - current_user.books.each do |book|
           tr
             td = book.book_title
             td = book.description

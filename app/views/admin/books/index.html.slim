@@ -7,6 +7,9 @@
 - if current_user.books.present?
   .nav.justify-content-end
     = link_to '新規作成', new_admin_book_path, class: 'btn btn-primary'
+  
+  .mb-3
+    = paginate @books
 
   .mt-5
     table.table.table-hover
@@ -17,7 +20,7 @@
           th = 'ラベル'
           th
       tbody
-        - current_user.books.each do |book|
+        - @books.each do |book|
           tr
             td = book.book_title
             td = book.description

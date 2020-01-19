@@ -12,9 +12,6 @@
       tr
         td = simple_format(h(@book.introduction), {}, sanitize:false, wrapper_tag: "div")
 
-.row
-  -if @book.scenarios.present?
-    .col-2
-      = link_to '読む', scenario_path(@scenario_no.id), class: 'btn btn-outline-primary'
-  .col-2
-    = link_to '戻る', admin_books_path, class: 'btn btn-primary'
+
+.col-2
+  = link_to '戻る', admin_books_path, class: 'btn btn-primary'

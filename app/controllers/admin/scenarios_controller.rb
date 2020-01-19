@@ -1,10 +1,11 @@
 class Admin::ScenariosController < ApplicationController
   layout "admin"
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /scenarios
   def index
-    @scenarios = Scenario.all
+    @scenarios = Scenario.where(book_id: current_user.books.ids)
   end
 
   # GET /scenarios/1
@@ -14,7 +15,6 @@ class Admin::ScenariosController < ApplicationController
   # GET /scenarios/new
   def new
     @scenario = Scenario.new
-    params[:book_id]
   end
 
   # GET /scenarios/1/edit
@@ -26,7 +26,7 @@ class Admin::ScenariosController < ApplicationController
     @scenario = Scenario.new(scenario_params)
 
     if @scenario.save
-      redirect_to @scenario, notice: 'Scenario was successfully created.'
+      redirect_to admin_scenarios_path, notice: 'Scenario was successfully created.'
     else
       render :new
     end

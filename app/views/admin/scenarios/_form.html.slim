@@ -1,40 +1,34 @@
-= form_for @scenario do |f|
-  - if @scenario.errors.any?
-    #error_explanation
-      h2 = "#{pluralize(@scenario.errors.count, "error")} prohibited this scenario from being saved:"
-      ul
-        - @scenario.errors.full_messages.each do |message|
-          li = message
-
-  .form-group.row
-    .col-sm-3
-      = f.label :book, 'ブックナンバー', class: 'col-form-label'
-    .col-sm-9
-      = f.text_field :book_id, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :scenario_no, 'シナリオ番号', class: 'col-form-label'
-    .col-sm-9
-      = f.number_field :scenario_no, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :description, 'シナリオ', class: 'col-form-label'
-    .col-sm-9
-      = f.text_area :description, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :next_no1, '選択肢１', class: 'col-form-label'
-    .col-sm-9
-      = f.number_field :next_no1, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :next_no2, '選択肢２', class: 'col-form-label'
-    .col-sm-9
-      = f.number_field :next_no2, class: 'form-control'
-  .form-group.row
-    .col-sm-3
-      = f.label :next_no3, '選択肢３', class: 'col-form-label'
-    .col-sm-9
-      = f.number_field :next_no3, class: 'form-control'
-  .form-group
-    = f.submit '決定', class: 'btn btn-primary'
+.mt-5
+  = form_with model: scenario, local: true do |f|
+    .form-group.row
+      .col-sm-3
+        = f.label :book_id, 'ブック名', class: 'col-form-label'
+      .col-sm-9
+        = f.select :book_id, current_user.books.all.map{|b| [b.book_title, b.id]}
+    .form-group.row
+      .col-sm-3
+        = f.label :scenario_no, 'シナリオ番号', class: 'col-form-label'
+      .col-sm-9
+        = f.number_field :scenario_no, class: 'form-control'
+    .form-group.row
+      .col-sm-3
+        = f.label :description, 'シナリオ', class: 'col-form-label'
+      .col-sm-9
+        = f.text_area :description, class: 'form-control'
+    .form-group.row
+      .col-sm-3
+        = f.label :next_no1, '選択肢１', class: 'col-form-label'
+      .col-sm-9
+        = f.number_field :next_no1, class: 'form-control'
+    .form-group.row
+      .col-sm-3
+        = f.label :next_no2, '選択肢２', class: 'col-form-label'
+      .col-sm-9
+        = f.number_field :next_no2, class: 'form-control'
+    .form-group.row
+      .col-sm-3
+        = f.label :next_no3, '選択肢３', class: 'col-form-label'
+      .col-sm-9
+        = f.number_field :next_no3, class: 'form-control'
+    .form-group
+      = f.submit '決定', class: 'btn btn-primary'

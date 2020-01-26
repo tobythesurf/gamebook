@@ -1,4 +1,4 @@
-class Public::DashboardController < ApplicationController
+class Public::DashboardController < PublicApplicationController
   def index
   end
 end

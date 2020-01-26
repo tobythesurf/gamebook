@@ -8,6 +8,9 @@ class Admin::ScenariosController < AdminApplicationController
 
   # GET /scenarios/1
   def show
+    @next1 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
+    @next2 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no2)
+    @next3 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no3)    
   end
 
   # GET /scenarios/new

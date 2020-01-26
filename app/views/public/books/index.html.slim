@@ -20,8 +20,9 @@
     thead.thead-default
       tr
         th = '題名'
-        th = '大体の内容'
-        th = 'ラベル'
+        th = '概要'
+        th = 'タグ'
+        th = '作者'
         th
     tbody
       - @books.each do |book|
@@ -29,4 +30,8 @@
           td = book.book_title
           td = book.description
           td = book.label_list
+          - if book.user.profile.present?
+            td = book.user.profile.name
+          - else
+            td = book.user.id
           td = link_to '閲覧', book, class: 'btn btn-outline-primary mr-3'

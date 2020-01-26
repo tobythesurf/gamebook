@@ -1,4 +1,4 @@
-class Public::ScenariosController < ApplicationController
+class Public::ScenariosController < PublicApplicationController
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
   # GET /scenarios
   def index
@@ -7,7 +7,9 @@ class Public::ScenariosController < ApplicationController
 
   # GET /scenarios/1
   def show
-    @next = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
+    @next1 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
+    @next2 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no2)
+    @next3 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no3)
   end
 
   # GET /scenarios/new

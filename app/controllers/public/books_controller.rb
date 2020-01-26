@@ -1,4 +1,4 @@
-class Public::BooksController < ApplicationController
+class Public::BooksController < PublicApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
   # GET /books

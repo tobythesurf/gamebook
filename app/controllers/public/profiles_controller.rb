@@ -1,4 +1,4 @@
-class Public::ProfilesController < ApplicationController
+class Public::ProfilesController < PublicApplicationController
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /profiles

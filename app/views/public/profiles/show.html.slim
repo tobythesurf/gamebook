@@ -8,8 +8,6 @@ p
   = @profile.comment
 p
   strong User:
-  = @profile.user
+  = @profile.user.id
 
-=> link_to 'Edit', edit_profile_path(@profile)
-'|
-=< link_to 'Back', profiles_path
+=< link_to '戻る', books_path

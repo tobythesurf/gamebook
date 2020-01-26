@@ -3,4 +3,4 @@ h1
 = @scenario.description
 .row
   .col2
-    = link_to "#{@scenario.next_no1}へ行く", scenario_path(@scenario.next_no1), class: 'btn btn-outline-primary' unless @scenario.next_no1 == 0
+    = link_to "#{@scenario.next_no1}へ行く", scenario_path(@next), class: 'btn btn-outline-primary' unless @scenario.next_no1 == 0

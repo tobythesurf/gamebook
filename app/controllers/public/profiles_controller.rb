@@ -1,7 +1,5 @@
 class Public::ProfilesController < ApplicationController
-  layout "public"
   before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /profiles
   def index

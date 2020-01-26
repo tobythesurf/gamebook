@@ -1,8 +1,12 @@
 .row
   .col
   .col6 
-    h1
-      |"ようこそ　#{current_user.id}　さん"
+    - if current_user.profile.present?
+      h1
+        |"ようこそ　#{current_user.profile.name}　さん"
+    - else
+      h1
+        |"ようこそ　#{current_user.id}　さん"
   .col
 
 .mt-5
@@ -12,10 +16,10 @@
         - if current_user.profile.present?
           tr
             td = 'プロフィール閲覧'
-            td = link_to 'プロフィール閲覧', admin_profiles_path, class: 'btn btn-primary'
+            td = link_to 'プロフィール閲覧', admin_profile_path(current_user.profile), class: 'btn btn-primary'
           tr
             td = 'プロフィール編集'
-            td = link_to 'プロフィール編集', edit_admin_profile_path(current_user.id), class: 'btn btn-primary'          
+            td = link_to 'プロフィール編集', edit_admin_profile_path(current_user.profile), class: 'btn btn-primary'          
         - else
           tr
             td = 'プロフィールの作成'

@@ -5,19 +5,14 @@
   .col
 
 .mt-5
-    table.table.table-hover
-      thead.thead-default
-    　　tr
-      　　th ユーザー名
-      　　th コメント
-      　　th ユーザーid
-      　　th
-      　　th
+  p#notice = notice
 
-  　　tbody
-      　tr
-        　td = @profile.name
-        　td = @profile.comment
-        　td = @profile.user_id
-        　td = link_to '編集', edit_admin_profile_path(current_user.id), class: 'btn btn-primary mr-3'
-        　td = link_to '削除', admin_profile_path(current_user.id), data: { confirm: '本当に削除しますか？' }, method: :delete, class: 'btn btn-danger'
+  p
+    strong Name:
+    = @profile.name
+  p
+    strong Comment:
+    = @profile.comment
+  p
+    strong User:
+    = @profile.user

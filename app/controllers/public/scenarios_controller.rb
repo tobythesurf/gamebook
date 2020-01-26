@@ -1,8 +1,5 @@
 class Public::ScenariosController < ApplicationController
-  layout "public"
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
-
   # GET /scenarios
   def index
     @scenarios = Scenario.all
@@ -10,9 +7,7 @@ class Public::ScenariosController < ApplicationController
 
   # GET /scenarios/1
   def show
-    @next1 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
-    @next2 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no2)
-    @next3 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no3)
+    @next = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
   end
 
   # GET /scenarios/new
@@ -29,7 +24,7 @@ class Public::ScenariosController < ApplicationController
     @scenario = Scenario.new(scenario_params)
 
     if @scenario.save
-      redirect_to admin_scenarios_path, notice: 'Scenario was successfully created.'
+      redirect_to @scenario, notice: 'Scenario was successfully created.'
     else
       render :new
     end
@@ -38,7 +33,7 @@ class Public::ScenariosController < ApplicationController
   # PATCH/PUT /scenarios/1
   def update
     if @scenario.update(scenario_params)
-      redirect_to edit_admin_scenario_path, notice: 'Scenario was successfully updated.'
+      redirect_to @scenario, notice: 'Scenario was successfully updated.'
     else
       render :edit
     end

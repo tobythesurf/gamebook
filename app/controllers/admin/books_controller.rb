@@ -1,7 +1,5 @@
-class Admin::BooksController < ApplicationController
-  layout "admin"
+class Admin::BooksController < AdminApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
 
   # GET /books
   def index
@@ -10,7 +8,6 @@ class Admin::BooksController < ApplicationController
 
   # GET /books/1
   def show
-    current_user.books.find(params[:id])
   end
 
   # GET /books/new
@@ -20,7 +17,6 @@ class Admin::BooksController < ApplicationController
 
   # GET /books/1/edit
   def edit
-    current_user.books.find(params[:id])
   end
 
   # POST /books
@@ -28,7 +24,7 @@ class Admin::BooksController < ApplicationController
     @book = Book.new(book_params.merge(user_id: current_user.id))
 
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to admin_book_url, notice: 'Book was successfully created.'
     else
       render :new
     end
@@ -37,7 +33,7 @@ class Admin::BooksController < ApplicationController
   # PATCH/PUT /books/1
   def update
     if @book.update(book_params.merge(user_id: current_user.id))
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to admin_book_url, notice: 'Book was successfully updated.'
     else
       render :edit
     end
@@ -46,7 +42,7 @@ class Admin::BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    redirect_to admin_books_url, notice: 'Book was successfully destroyed.'
   end
 
   private

@@ -1,16 +1,12 @@
-class Admin::ProfilesController < ApplicationController
-  layout "admin"
-  before_action :set_profile, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!
+class Admin::ProfilesController < AdminApplicationController
+  before_action :set_profile, only: [:index, :show, :edit, :update, :destroy]
 
   # GET /profiles
   def index
-    @profile = current_user.profile
   end
 
   # GET /profiles/1
   def show
-    @profile = current_user.profile
   end
 
   # GET /profiles/new
@@ -20,12 +16,11 @@ class Admin::ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    @profile = current_user.profile
   end
 
   # POST /profiles
   def create
-    @profile = current_user.profiles.new(profile_params)
+    @profile = Profile.new(profile_params)
 
     if @profile.save
       redirect_to @profile, notice: 'Profile was successfully created.'
@@ -36,7 +31,7 @@ class Admin::ProfilesController < ApplicationController
 
   # PATCH/PUT /profiles/1
   def update
-    if @profile.update(profile_params.merge(user_id: current_user.id))
+    if @profile.update(profile_params)
       redirect_to @profile, notice: 'Profile was successfully updated.'
     else
       render :edit
@@ -52,7 +47,7 @@ class Admin::ProfilesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_profile
-      @profile = Profile.find(params[:id])
+      @profile = current_user.profile
     end
 
     # Only allow a trusted parameter "white list" through.

@@ -28,7 +28,7 @@
       - @books.each do |book|
         tr
           td = book.book_title
-          td = book.description
+          td = book.description.truncate(5, omission: '~')
           td = book.label_list
           - if book.user.profile.present?
             td = book.user.profile.name

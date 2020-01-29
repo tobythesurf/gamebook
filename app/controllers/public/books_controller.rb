@@ -4,7 +4,7 @@ class Public::BooksController < PublicApplicationController
   # GET /books
   def index
     @q = Book.ransack(params[:q])
-    @books = @q.result(distinct: true).page(params[:page]).per(3)
+    @books = @q.result(distinct: true).page(params[:page])
   end
 
   # GET /books/1

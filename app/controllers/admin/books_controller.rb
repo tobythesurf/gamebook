@@ -3,7 +3,7 @@ class Admin::BooksController < AdminApplicationController
 
   # GET /books
   def index
-    @books = current_user.books.page(params[:page]).per(2)
+    @books = current_user.books.page(params[:page])
   end
 
   # GET /books/1

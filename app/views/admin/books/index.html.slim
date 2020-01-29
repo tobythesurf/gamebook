@@ -23,7 +23,7 @@
         - @books.each do |book|
           tr
             td = book.book_title
-            td = book.description
+            td = book.description.truncate(5, omission: '~')
             td = book.label_list
             td
               = link_to '詳細', admin_book_url(book), class: 'btn btn-outline-primary mr-3'

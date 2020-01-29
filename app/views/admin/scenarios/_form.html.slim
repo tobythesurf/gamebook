@@ -9,7 +9,7 @@
       .col-sm-3
         = f.label :scenario_no, 'シナリオ番号', class: 'col-form-label'
       .col-sm-9
-        = f.number_field :scenario_no, class: 'form-control'
+        = f.number_field :scenario_no, min: 1, max: 999, class: 'form-control'
     .form-group.row
       .col-sm-3
         = f.label :description, 'シナリオ', class: 'col-form-label'
@@ -19,16 +19,16 @@
       .col-sm-3
         = f.label :next_no1, '選択肢１', class: 'col-form-label'
       .col-sm-9
-        = f.number_field :next_no1, class: 'form-control'
+        = f.number_field :next_no1, min: 0, max: 999, class: 'form-control'
     .form-group.row
       .col-sm-3
         = f.label :next_no2, '選択肢２', class: 'col-form-label'
       .col-sm-9
-        = f.number_field :next_no2, class: 'form-control'
+        = f.number_field :next_no2, min: 0, max: 999, class: 'form-control'
     .form-group.row
       .col-sm-3
         = f.label :next_no3, '選択肢３', class: 'col-form-label'
       .col-sm-9
-        = f.number_field :next_no3, class: 'form-control'
+        = f.number_field :next_no3, min: 0, max: 999, class: 'form-control'
     .form-group
       = f.submit '決定', class: 'btn btn-primary'

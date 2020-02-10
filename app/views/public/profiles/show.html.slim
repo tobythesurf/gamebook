@@ -1,13 +1,12 @@
 p#notice = notice
 
-p
-  strong Name:
-  = @profile.name
-p
-  strong Comment:
-  = @profile.comment
-p
-  strong User:
-  = @profile.user.id
+.card style=("width: 20rem;") 
+  img.card-img-top alt=("Card image cap") src="/unnamed.jpg" /
+  .card-body
+    h4.card-title
+      = @profile.name
+    p.card-text
+      = @profile.comment
+    a.btn.btn-primary href="/"  Go somewhere
 
-=< link_to '戻る', books_path
+= link_to '戻る', books_path

@@ -12,41 +12,6 @@ class Public::ScenariosController < PublicApplicationController
     @next3 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no3)
   end
 
-  # GET /scenarios/new
-  def new
-    @scenario = Scenario.new
-  end
-
-  # GET /scenarios/1/edit
-  def edit
-  end
-
-  # POST /scenarios
-  def create
-    @scenario = Scenario.new(scenario_params)
-
-    if @scenario.save
-      redirect_to @scenario, notice: 'Scenario was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /scenarios/1
-  def update
-    if @scenario.update(scenario_params)
-      redirect_to @scenario, notice: 'Scenario was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /scenarios/1
-  def destroy
-    @scenario.destroy
-    redirect_to scenarios_url, notice: 'Scenario was successfully destroyed.'
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_scenario

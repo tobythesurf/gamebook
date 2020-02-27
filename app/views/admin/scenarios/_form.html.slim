@@ -1,5 +1,5 @@
 .mt-5
-  = form_with model: scenario, local: true do |f|
+  = form_with model: [ :admin, @scenario ], local: true do |f|
     .form-group.row
       .col-sm-3
         = f.label :book_id, 'ブック名', class: 'col-form-label'

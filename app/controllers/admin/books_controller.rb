@@ -24,7 +24,7 @@ class Admin::BooksController < AdminApplicationController
     @book = Book.new(book_params.merge(user_id: current_user.id))
 
     if @book.save
-      redirect_to admin_book_url, notice: 'Book was successfully created.'
+      redirect_to admin_books_path, notice: 'Book was successfully created.'
     else
       render :new
     end
@@ -33,7 +33,7 @@ class Admin::BooksController < AdminApplicationController
   # PATCH/PUT /books/1
   def update
     if @book.update(book_params.merge(user_id: current_user.id))
-      redirect_to admin_book_url, notice: 'Book was successfully updated.'
+      redirect_to admin_books_path, notice: 'Book was successfully updated.'
     else
       render :edit
     end

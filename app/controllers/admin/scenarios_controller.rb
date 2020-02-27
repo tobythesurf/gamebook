@@ -27,7 +27,7 @@ class Admin::ScenariosController < AdminApplicationController
     @scenario = Scenario.new(scenario_params)
 
     if @scenario.save
-      redirect_to @scenario, notice: 'Scenario was successfully created.'
+      redirect_to admin_scenarios_path, notice: 'Scenario was successfully created.'
     else
       render :new
     end
@@ -36,7 +36,7 @@ class Admin::ScenariosController < AdminApplicationController
   # PATCH/PUT /scenarios/1
   def update
     if @scenario.update(scenario_params)
-      redirect_to @scenario, notice: 'Scenario was successfully updated.'
+      redirect_to admin_scenarios_path, notice: 'Scenario was successfully updated.'
     else
       render :edit
     end

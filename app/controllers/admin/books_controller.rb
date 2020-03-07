@@ -1,10 +1,9 @@
-class Admin::BooksController < ApplicationController
+class Admin::BooksController < AdminApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /books
   def index
-    @books = Book.all
+    @books = current_user.books.page(params[:page])
   end
 
   # GET /books/1
@@ -25,7 +24,7 @@ class Admin::BooksController < ApplicationController
     @book = Book.new(book_params.merge(user_id: current_user.id))
 
     if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
+      redirect_to admin_books_path, notice: 'Book was successfully created.'
     else
       render :new
     end
@@ -34,7 +33,7 @@ class Admin::BooksController < ApplicationController
   # PATCH/PUT /books/1
   def update
     if @book.update(book_params.merge(user_id: current_user.id))
-      redirect_to @book, notice: 'Book was successfully updated.'
+      redirect_to admin_books_path, notice: 'Book was successfully updated.'
     else
       render :edit
     end
@@ -43,17 +42,17 @@ class Admin::BooksController < ApplicationController
   # DELETE /books/1
   def destroy
     @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
+    redirect_to admin_books_url, notice: 'Book was successfully destroyed.'
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
-      @book = Book.find(params[:id])
+      @book = current_user.books.find(params[:id])
     end
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id)
+      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id, :label_list)
     end
 end

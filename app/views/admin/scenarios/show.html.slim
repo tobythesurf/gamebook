@@ -3,4 +3,11 @@ h1
 = @scenario.description
 .row
   .col2
-    = link_to "#{@scenario.next_no1}へ行く", admin_scenario_path(@next.id), class: 'btn btn-outline-primary' unless @scenario.next_no1 == 0
+    -if @next1.present?
+      = link_to "#{@scenario.next_no1}へ行く", admin_scenario_url(@next1), class: 'btn btn-outline-primary' unless @scenario.next_no1 == 0
+  .col2
+    - if @next2.present?
+      = link_to "#{@scenario.next_no2}へ行く", admin_scenario_url(@next2), class: 'btn btn-outline-primary' unless @scenario.next_no2 == 0
+  .col2
+    - if @next3.present?
+      = link_to "#{@scenario.next_no3}へ行く", admin_scenario_url(@next3), class: 'btn btn-outline-primary' unless @scenario.next_no3 == 0

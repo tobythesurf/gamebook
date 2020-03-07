@@ -1,49 +1,14 @@
-class Public::BooksController < ApplicationController
+class Public::BooksController < PublicApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, only: [:new, :edit, :update, :destroy]
 
   # GET /books
   def index
-    @books = Book.all
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true).page(params[:page])
   end
 
   # GET /books/1
   def show
-  end
-
-  # GET /books/new
-  def new
-    @book = Book.new
-  end
-
-  # GET /books/1/edit
-  def edit
-  end
-
-  # POST /books
-  def create
-    @book = Book.new(book_params.merge(user_id: current_user.id))
-
-    if @book.save
-      redirect_to @book, notice: 'Book was successfully created.'
-    else
-      render :new
-    end
-  end
-
-  # PATCH/PUT /books/1
-  def update
-    if @book.update(book_params.merge(user_id: current_user.id))
-      redirect_to @book, notice: 'Book was successfully updated.'
-    else
-      render :edit
-    end
-  end
-
-  # DELETE /books/1
-  def destroy
-    @book.destroy
-    redirect_to books_url, notice: 'Book was successfully destroyed.'
   end
 
   private
@@ -54,6 +19,6 @@ class Public::BooksController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def book_params
-      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id)
+      params.require(:book).permit(:book_title, :description, :introduction, :user_permission, :user_id, :label_list)
     end
 end

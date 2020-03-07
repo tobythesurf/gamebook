@@ -1,14 +1,16 @@
 Rails.application.routes.draw do
   root to: 'public/books#index'
   namespace :admin do
+    get 'dashboard/index'
     resources :books
     resources :scenarios
     resources :profiles
   end
   scope module: :public do
-    resources :books
-    resources :scenarios
-    resources :profiles
+    get 'dashboard/index'
+    resources :books, only: [:index, :show]
+    resources :scenarios, only: [:index, :show]
+    resources :profiles, only: [:index, :show]
   end
   devise_for :users, controllers: {
     sessions: 'users/sessions',

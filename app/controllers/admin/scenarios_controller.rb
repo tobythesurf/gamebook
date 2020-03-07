@@ -1,13 +1,16 @@
-class Admin::ScenariosController < ApplicationController
+class Admin::ScenariosController < AdminApplicationController
   before_action :set_scenario, only: [:show, :edit, :update, :destroy]
 
   # GET /scenarios
   def index
-    @scenarios = Scenario.all
+    @scenarios = Scenario.where(book_id: current_user.books.ids)
   end
 
   # GET /scenarios/1
   def show
+    @next1 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no1)
+    @next2 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no2)
+    @next3 = Scenario.find_by(book_id: @scenario.book_id, scenario_no: @scenario.next_no3)    
   end
 
   # GET /scenarios/new
@@ -24,7 +27,7 @@ class Admin::ScenariosController < ApplicationController
     @scenario = Scenario.new(scenario_params)
 
     if @scenario.save
-      redirect_to @scenario, notice: 'Scenario was successfully created.'
+      redirect_to admin_scenarios_path, notice: 'Scenario was successfully created.'
     else
       render :new
     end
@@ -33,7 +36,7 @@ class Admin::ScenariosController < ApplicationController
   # PATCH/PUT /scenarios/1
   def update
     if @scenario.update(scenario_params)
-      redirect_to @scenario, notice: 'Scenario was successfully updated.'
+      redirect_to admin_scenarios_path, notice: 'Scenario was successfully updated.'
     else
       render :edit
     end

@@ -3,6 +3,6 @@ h1 シナリオ編集
 .nav.justify-content-end
   = link_to 'トップに戻る', '/', class: 'btn btn-primary mb-5'
 
-== render 'form'
+== render 'form', scenario: @scenario
 
 = link_to '一覧へ戻る', admin_scenarios_path, class: 'btn btn-primary mr-3'

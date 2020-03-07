@@ -1,15 +1,18 @@
-p#notice = notice
+.row
+  .col
+  .col6 
+    h1 プロフィール
+  .col
 
-p
-  strong Name:
-  = @profile.name
-p
-  strong Comment:
-  = @profile.comment
-p
-  strong User:
-  = @profile.user
+.mt-5
+  p#notice = notice
 
-=> link_to 'Edit', edit_admin_profile_path(@profile)
-'|
-=< link_to 'Back', admin_profiles_path
+  p
+    strong Name:
+    = @profile.name
+  p
+    strong Comment:
+    = @profile.comment
+  p
+    strong User:
+    = @profile.user
